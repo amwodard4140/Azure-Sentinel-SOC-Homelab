@@ -111,7 +111,7 @@ This query:
 - Records the first and last authentication attempts
 - Returns a result when the number of failed logons reaches or exceeds five
 
-![Sentinel Detection Query Test](02-Azure-Lab-Environment/sentinel-detection-query-test.png)
+![Sentinel Detection Query Test](sentinel-analytics-rule-review1.png)
 
 During testing, the query successfully identified the simulated activity and returned five failed logons associated with the test account and Windows VM.
 
