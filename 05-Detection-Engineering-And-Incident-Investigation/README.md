@@ -143,7 +143,7 @@ The rule was configured with the following parameters:
 | MITRE ATT&CK Tactic | Credential Access |
 | Status | Enabled |
 
-![Microsoft Sentinel Analytics Rule](02-Azure-Lab-Environment/sentinel-analytics-rule-review.png)
+![Microsoft Sentinel Analytics Rule](sentinel-analytics-rule-review.png)
 
 The detection was designed to identify repeated authentication failures while avoiding the creation of a separate alert for every individual failed login.
 
