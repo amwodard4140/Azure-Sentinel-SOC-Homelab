@@ -52,9 +52,7 @@ A basic query can be used to view events associated with the lab virtual machine
 SecurityEvent
 | where Computer == "Alan-VM-Test"
 | sort by TimeGenerated desc
-| take 50
 ```
-![KQL Verified Log Query](kql-verified-log.png)
 
 This confirmed that Windows security telemetry from the virtual machine was available in Log Analytics.
 
