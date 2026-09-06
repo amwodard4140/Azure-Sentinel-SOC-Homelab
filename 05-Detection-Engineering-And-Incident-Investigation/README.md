@@ -20,7 +20,7 @@ runas /user:FakeSOCUser cmd
 
 An intentionally incorrect password was entered repeatedly, causing Windows to reject the authentication attempts.
 
-![Failed Windows Authentication Attempts](02-Azure-Lab-Environment/windows-failed-logon-generation.png)
+![Failed Windows Authentication Attempts](windows-failed-logon-generation.png)
 
 The failed attempts returned:
 
