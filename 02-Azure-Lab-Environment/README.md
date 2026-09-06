@@ -50,7 +50,7 @@ The virtual machine was used throughout the lab to:
 
 Using a dedicated Windows endpoint allowed me to follow security activity from its origin on the host through the complete SOC monitoring and investigation process.
 
-![Windows 11 Virtual Machine](windows11-vm-redacted.png)
+![Windows 11 Virtual Machine](windows11-vm-1.png)
 
 ---
 
