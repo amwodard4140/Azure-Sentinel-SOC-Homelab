@@ -180,7 +180,7 @@ This demonstrated that the custom detection successfully converted raw Windows S
 
 I opened the generated incident to review the associated alert, timeline, and entities.
 
-![Microsoft Sentinel Incident Investigation](02-Azure-Lab-Environment/sentinel-incident-overview.png)
+![Microsoft Sentinel Incident Investigation](sentinel-incident-overview.png)
 
 Microsoft Sentinel associated two important entities with the incident:
 
