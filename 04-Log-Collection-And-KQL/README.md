@@ -14,33 +14,35 @@ This allowed me to use Kusto Query Language (KQL) to search and analyze security
 
 The **Windows Security Events via AMA** data connector was used to collect Windows Security Event logs from the virtual machine.
 
-The connector uses the Azure Monitor Agent (AMA) and a Data Collection Rule (DCR) to send Windows Security Events to the Log Analytics workspace.
+The connector uses the Azure Monitor Agent (AMA) and Data Collection Rules (DCRs) to route Windows Security Events into Azure Monitor Logs for analysis.
 
-The log collection path for this lab was:
+The log collection process used throughout the lab was:
 
 **Windows 11 VM → Azure Monitor Agent → Data Collection Rule → Log Analytics Workspace → Microsoft Sentinel**
 
-The Windows Security Events via AMA connector showed a connected status and confirmed that security event data was being received.
+The Windows Security Events via AMA connector showed a **Connected** status and confirmed that Windows Security Event data was being received.
 
 ![Windows Security Events via AMA](windows-security-events-ama.png)
 
 ---
 
-## Data Collection Rule
+## Azure Monitor Data Collection
 
-A Data Collection Rule was used to define the Windows event logs collected from the virtual machine and their destination.
+The Cyber Range environment uses Azure Monitor Data Collection Rules to control how telemetry from monitored resources is collected and routed to Log Analytics.
 
-The rule connected the Windows endpoint to Azure Monitor Logs, allowing the generated Windows Security Events to be stored in the Log Analytics workspace.
+The Azure Monitor graph view provided a visual representation of the Cyber Range's broader data collection environment, including monitored resources, collected data, and Log Analytics destinations.
 
-This provided the telemetry needed for KQL queries, detection rules, and incident investigation in Microsoft Sentinel.
+This helped demonstrate how endpoint telemetry moves through Azure Monitor before becoming available for security monitoring and analysis.
 
-![Data Collection Rule](data-collection-rule.png)
+![Azure Monitor Data Collection Architecture](data-collection-rule.png)
+
+*Azure Monitor Data Collection Rules graph view showing the Cyber Range log collection architecture and Log Analytics destinations.*
 
 ---
 
 ## Verifying Log Collection with KQL
 
-After configuring log collection, I used Kusto Query Language (KQL) in Log Analytics to confirm that security events from the Windows 11 virtual machine were reaching the workspace.
+After confirming that Windows Security Events were being collected, I used Kusto Query Language (KQL) in Log Analytics to verify that security telemetry from the Windows 11 virtual machine was available for analysis.
 
 The `SecurityEvent` table contains Windows Security Event data collected from the endpoint.
 
@@ -52,21 +54,21 @@ SecurityEvent
 | sort by TimeGenerated desc
 ```
 
-This allowed me to confirm that Windows security telemetry from the virtual machine was available for analysis.
+This confirmed that Windows security telemetry from the virtual machine was available in Log Analytics.
 
 ---
 
 ## Investigating Failed Logon Events
 
-To generate authentication activity for the lab, I intentionally attempted to authenticate using the test account:
+To generate authentication activity for the lab, I intentionally performed failed authentication attempts using the test account:
 
 `FakeSOCUser`
 
-The failed authentication attempts generated:
+These failed authentication attempts generated:
 
 **Windows Security Event ID 4625 — An account failed to log on**
 
-I then used KQL to locate those events in Log Analytics.
+I then used KQL to locate the corresponding events in Log Analytics.
 
 ```kusto
 SecurityEvent
@@ -77,10 +79,10 @@ SecurityEvent
 | sort by TimeGenerated desc
 ```
 
-The query filtered the security telemetry by:
+The query progressively filtered the security telemetry by:
 
 - Virtual machine
-- Event ID
+- Windows Security Event ID
 - Test account
 
 It then displayed fields useful for investigating the authentication activity, including:
@@ -101,7 +103,7 @@ The query returned **13 failed logon events** associated with the `FakeSOCUser` 
 
 ## Analyzing the Event Data
 
-The query results confirmed that the failed authentication attempts generated on the Windows endpoint were successfully collected by Azure and available for investigation in Log Analytics.
+The KQL results confirmed that the failed authentication attempts generated on the Windows endpoint were successfully collected and available for investigation in Log Analytics.
 
 The results showed:
 
@@ -113,19 +115,19 @@ The results showed:
 - **Workstation:** `Alan-VM-Test`
 - **Activity:** `4625 - An account failed to log on`
 
-This demonstrated the connection between activity occurring on the Windows endpoint and the security telemetry available to a SOC analyst in Microsoft Sentinel.
+This demonstrated the connection between activity occurring on the Windows endpoint and the security telemetry available to a SOC analyst through Microsoft Sentinel and Log Analytics.
 
 ---
 
 ## KQL Investigation Workflow
 
-This portion of the lab demonstrated a basic SOC investigation workflow:
+This portion of the lab demonstrated a basic SOC log analysis workflow:
 
-**Generate security activity → Collect endpoint telemetry → Query the logs → Filter suspicious activity → Analyze the results**
+**Generate Security Activity → Collect Endpoint Telemetry → Query Logs → Filter Relevant Events → Analyze Results**
 
-Instead of reviewing individual Windows events manually, KQL allowed me to quickly search the collected telemetry and isolate the events associated with the simulated failed authentication activity.
+Instead of reviewing individual Windows events manually, KQL allowed me to search the collected telemetry and isolate events associated with the simulated failed authentication activity.
 
-The same process can be used by SOC analysts to investigate larger datasets and identify security events that require further analysis.
+This type of filtering and analysis is an important part of SOC investigations because analysts often work with large volumes of security telemetry and must narrow the data to activity relevant to an investigation.
 
 ---
 
@@ -134,13 +136,13 @@ The same process can be used by SOC analysts to investigate larger datasets and 
 This portion of the lab provided hands-on experience with:
 
 - Collecting Windows Security Event logs
-- Using Azure Monitor Agent (AMA)
-- Working with Data Collection Rules
-- Sending security telemetry to Log Analytics
+- Working with Azure Monitor Agent (AMA)
+- Understanding Data Collection Rules
+- Routing security telemetry to Log Analytics
 - Querying the `SecurityEvent` table
 - Writing and refining KQL queries
-- Filtering logs by computer, Event ID, and account
-- Investigating Windows Event ID 4625
+- Filtering security events by computer, Event ID, and account
+- Investigating Windows Security Event ID 4625
 - Identifying failed authentication activity
 - Connecting endpoint activity to centralized SOC monitoring
 
