@@ -52,7 +52,7 @@ SecurityEvent
 | sort by TimeGenerated desc
 ```
 
-![Event ID 4625 Query Results](02-Azure-Lab-Environment/sentinel-4625-query-results.png)
+![Event ID 4625 Query Results](sentinel-4625-query-results.png)
 
 The results confirmed that the failed authentication attempts generated on the Windows VM were successfully collected by the Log Analytics workspace and available for analysis in Microsoft Sentinel.
 
