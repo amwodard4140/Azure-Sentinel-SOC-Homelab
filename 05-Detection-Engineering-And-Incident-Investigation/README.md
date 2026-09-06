@@ -222,7 +222,7 @@ SecurityEvent
 | sort by TimeGenerated desc
 ```
 
-![Failed Logon Investigation](02-Azure-Lab-Environment/sentinel-failed-logon-investigation.png)
+![Failed Logon Investigation](sentinel-4625-query-results.png)
 
 The query returned multiple Event ID `4625` records associated with the same test account and Windows host.
 
