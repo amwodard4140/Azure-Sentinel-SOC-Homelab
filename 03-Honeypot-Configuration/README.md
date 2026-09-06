@@ -16,7 +16,7 @@ Before generating security events, I tested connectivity to the Windows 11 virtu
 
 Windows Defender Firewall was initially enabled for the Domain, Private, and Public profiles. A connectivity test from my local computer to the virtual machine was unsuccessful while these firewall profiles were enabled.
 
-![Windows Firewall Enabled and Connectivity Test](firewall-enabled-connectivity-test.png)
+![Windows Firewall Enabled and Connectivity Test](Screenshot 2026-09-06 at 5.27.33 PM.png)
 
 For the purposes of this isolated lab environment, I disabled the Windows Defender Firewall profiles using PowerShell:
 
