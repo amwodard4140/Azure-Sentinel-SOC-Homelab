@@ -161,7 +161,7 @@ Once the threshold was satisfied, Sentinel generated an incident:
 
 **Multiple Failed Logon Attempts - Alan Lab**
 
-![Microsoft Sentinel Incident Generated](02-Azure-Lab-Environment/sentinel-incident-generated.png)
+![Microsoft Sentinel Incident Generated](sentinel-incident-generated.png)
 
 The resulting incident was classified as:
 
